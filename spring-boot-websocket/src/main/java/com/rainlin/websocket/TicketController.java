@@ -9,6 +9,11 @@ import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * 多例模式
+ *
+ * @author rainlin
+ */
 @Slf4j
 @Component
 @ServerEndpoint("/tickets")
@@ -18,7 +23,6 @@ public class TicketController {
 
     @OnMessage
     public void getRemainingTickets(Session session, String msg) throws IOException {
-        log.info(this.toString());
         session.getBasicRemote().sendText(String.valueOf(tickets.decrementAndGet()));
     }
 }

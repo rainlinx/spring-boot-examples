@@ -7,6 +7,11 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.AbstractWebSocketHandler;
 
+/**
+ * 单例模式
+ *
+ * @author rainlin
+ */
 @Component
 @Slf4j
 public class MarcoHandler extends AbstractWebSocketHandler {
@@ -18,7 +23,6 @@ public class MarcoHandler extends AbstractWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         log.info(session.getRemoteAddress() + " send msg: " + message);
-        log.info(this.toString());
         session.sendMessage(new TextMessage("copy that"));
     }
 

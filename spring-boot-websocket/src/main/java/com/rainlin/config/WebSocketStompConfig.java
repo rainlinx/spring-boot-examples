@@ -17,10 +17,10 @@ public class WebSocketStompConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         // 基于内存消息代理
-        //registry.enableSimpleBroker("/topic", "/queue");
+        registry.enableSimpleBroker("/topic", "/queue", "/user");
 
         // 基于rabbitmq-stomp消息代理
-        registry.enableStompBrokerRelay("/topic", "/queue");
+        //registry.enableStompBrokerRelay("/topic", "/queue");
         registry.setApplicationDestinationPrefixes("/app");
     }
 }

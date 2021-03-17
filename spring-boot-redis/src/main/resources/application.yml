@@ -1,0 +1,18 @@
+spring:
+  cache:
+    redis:
+      time-to-live: 6000
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  redis:
+    database: 0
+    host: localhost
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        max-wait: -1
+        min-idle: 0
+    password: ''
+    port: 6379

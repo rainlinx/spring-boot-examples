@@ -9,9 +9,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 @RunWith(SpringRunner.class)
@@ -32,7 +34,7 @@ public class TestRedis {
     
     @Test
     public void testObj() throws Exception {
-        User user=new User("aa@126.com", "aa", "aa123456", "aa","123");
+        User user=new User("aa@126.com", "aa", "aa123456", "aa","123", LocalDateTime.now(), new Date(), Timestamp.valueOf(LocalDateTime.now()));
         ValueOperations<String, User> operations=redisTemplate.opsForValue();
         operations.set("com.neox", user);
         operations.set("com.neo.f", user,1, TimeUnit.SECONDS);

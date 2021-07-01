@@ -1,0 +1,8 @@
+spring:
+  activiti:
+    mail-server-host: smtp.qq.com
+    mail-server-port: 465
+    mail-server-default-from:
+    mail-server-user-name:
+    mail-server-password:
+    mail-server-use-ssl: true

@@ -1,7 +1,9 @@
 spring:
   cache:
     redis:
-      time-to-live: 6000
+#      time-to-live: 6000
+      ttl:
+        user-key: 60
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8

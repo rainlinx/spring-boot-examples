@@ -6,18 +6,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.cache.RedisCacheConfiguration;
+import org.springframework.data.redis.cache.RedisCacheManager;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.RedisSerializationContext;
 
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -25,9 +32,16 @@ import java.time.format.DateTimeFormatter;
  */
 @Configuration
 @EnableCaching
+@ConfigurationProperties("spring.cache.redis")
 public class RedisConfig extends CachingConfigurerSupport {
 
     public static final String DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
+    private final RedisConnectionFactory redisConnectionFactory;
+    private Map<String, Long> ttl;
+
+    public RedisConfig(RedisConnectionFactory redisConnectionFactory) {
+        this.redisConnectionFactory = redisConnectionFactory;
+    }
 
     @Override
     @Bean
@@ -41,6 +55,27 @@ public class RedisConfig extends CachingConfigurerSupport {
             }
             return sb.toString();
         };
+    }
+
+    /**
+     * 重写CacheManager，通过配置spring.cache.redis.ttl支持自定义每个cacheName的过期时间
+     *
+     */
+    @Override
+    @Bean
+    public CacheManager cacheManager() {
+        Map<String, RedisCacheConfiguration> cachingConfigurerMap = new HashMap<>(ttl.size());
+        ttl.forEach((key, value) -> cachingConfigurerMap.put(key, getCacheConfigurationWithTtl(value)));
+        return RedisCacheManager.RedisCacheManagerBuilder
+                .fromConnectionFactory(redisConnectionFactory)
+                //.cacheDefaults(redisCacheConfiguration())
+                .cacheDefaults(getCacheConfigurationWithTtl(60))
+                .withInitialCacheConfigurations(cachingConfigurerMap)
+                .build();
+    }
+
+    private RedisCacheConfiguration getCacheConfigurationWithTtl(long seconds) {
+        return redisCacheConfiguration().entryTtl(Duration.ofSeconds(seconds));
     }
 
     @Bean
@@ -61,5 +96,14 @@ public class RedisConfig extends CachingConfigurerSupport {
         serializer.setObjectMapper(objectMapper);
 
         return RedisCacheConfiguration.defaultCacheConfig().serializeValuesWith(RedisSerializationContext.SerializationPair.fromSerializer(serializer));
+    }
+
+
+    public Map<String, Long> getTtl() {
+        return ttl;
+    }
+
+    public void setTtl(Map<String, Long> ttl) {
+        this.ttl = ttl;
     }
 }

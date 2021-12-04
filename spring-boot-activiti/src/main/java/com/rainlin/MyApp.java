@@ -12,7 +12,10 @@ import org.springframework.context.annotation.Bean;
 import java.util.HashMap;
 import java.util.Map;
 
-@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
+/**
+ * 排除activit和springboot的security自动配置
+ */
+@SpringBootApplication(exclude = {SecurityAutoConfiguration.class, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration.class})
 public class MyApp {
 
     public static void main(String[] args) {

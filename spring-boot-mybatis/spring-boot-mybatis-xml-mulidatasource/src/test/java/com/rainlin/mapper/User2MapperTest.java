@@ -1,8 +1,8 @@
-package com.neo.mapper;
+package com.rainlin.mapper;
 
-import com.neo.model.User;
-import com.neo.enums.UserSexEnum;
-import com.neo.mapper.test2.User2Mapper;
+import com.rainlin.enums.UserSexEnum;
+import com.rainlin.mapper.test2.User2Mapper;
+import com.rainlin.model.User;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

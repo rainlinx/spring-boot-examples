@@ -7,7 +7,7 @@
 	<description>Spring Boot swagger Sample</description>
 
 	<parent>
-		<groupId>com.example</groupId>
+		<groupId>com.rainlin</groupId>
 		<artifactId>spring-boot-examples</artifactId>
 		<version>2.0.0</version>
 	</parent>

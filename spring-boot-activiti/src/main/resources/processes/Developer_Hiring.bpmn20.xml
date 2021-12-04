@@ -199,6 +199,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="sid-F659050F-BF12-43FD-BE60-F0E235B1A32B" id="BPMNEdge_sid-F659050F-BF12-43FD-BE60-F0E235B1A32B">
         <omgdi:waypoint x="485.5" y="244.5"/>
+        <omgdi:waypoint x="485.5" y="263.5"/>
         <omgdi:waypoint x="485.5" y="275.0"/>
         <omgdi:waypoint x="525.0" y="275.0"/>
       </bpmndi:BPMNEdge>

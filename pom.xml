@@ -11,7 +11,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.example</groupId>
+    <groupId>com.rainlin</groupId>
     <artifactId>spring-boot-examples</artifactId>
     <packaging>pom</packaging>
     <version>2.0.0</version>

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.neo.mapper.test1.User1Mapper" >
-    <resultMap id="BaseResultMap" type="com.neo.model.User" >
+<mapper namespace="com.rainlin.mapper.test1.User1Mapper" >
+    <resultMap id="BaseResultMap" type="com.rainlin.model.User" >
         <id column="id" property="id" jdbcType="BIGINT" />
         <result column="userName" property="userName" jdbcType="VARCHAR" />
         <result column="passWord" property="passWord" jdbcType="VARCHAR" />
-        <result column="user_sex" property="userSex" javaType="com.neo.enums.UserSexEnum"/>
+        <result column="user_sex" property="userSex" javaType="com.rainlin.enums.UserSexEnum"/>
         <result column="nick_name" property="nickName" jdbcType="VARCHAR" />
     </resultMap>
     
@@ -26,7 +26,7 @@
 	   WHERE id = #{id}
     </select>
 
-    <insert id="insert" parameterType="com.neo.model.User" >
+    <insert id="insert" parameterType="com.rainlin.model.User" >
        INSERT INTO 
        		users
        		(userName,passWord,user_sex) 
@@ -34,7 +34,7 @@
        		(#{userName}, #{passWord}, #{userSex})
     </insert>
     
-    <update id="update" parameterType="com.neo.model.User" >
+    <update id="update" parameterType="com.rainlin.model.User" >
        UPDATE 
        		users 
        SET 

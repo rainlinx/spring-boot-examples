@@ -1,8 +1,8 @@
 package com.rainlin.repository.impl;
 
 import com.mongodb.client.result.UpdateResult;
-import com.rainlin.repository.UserRepository;
 import com.rainlin.model.User;
+import com.rainlin.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -21,6 +21,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     /**
      * 创建对象
+     *
      * @param user
      */
     @Override
@@ -30,6 +31,7 @@ public class UserRepositoryImpl implements UserRepository {
 
     /**
      * 根据用户名查询对象
+     *
      * @param userName
      * @return
      */
@@ -42,17 +44,18 @@ public class UserRepositoryImpl implements UserRepository {
 
     /**
      * 更新对象
+     *
      * @param user
      */
     @Override
     public long updateUser(User user) {
-        Query query=new Query(Criteria.where("id").is(user.getId()));
-        Update update= new Update().set("userName", user.getUserName()).set("passWord", user.getPassWord());
+        Query query = new Query(Criteria.where("id").is(user.getId()));
+        Update update = new Update().set("userName", user.getUserName()).set("passWord", user.getPassWord());
         //更新查询返回结果集的第一条
-        UpdateResult result =mongoTemplate.updateFirst(query,update,User.class);
+        UpdateResult result = mongoTemplate.updateFirst(query, update, User.class);
         //更新查询返回结果集的所有
         // mongoTemplate.updateMulti(query,update,UserEntity.class);
-        if(result!=null)
+        if (result != null)
             return result.getMatchedCount();
         else
             return 0;
@@ -60,11 +63,12 @@ public class UserRepositoryImpl implements UserRepository {
 
     /**
      * 删除对象
+     *
      * @param id
      */
     @Override
     public void deleteUserById(Long id) {
-        Query query=new Query(Criteria.where("id").is(id));
-        mongoTemplate.remove(query,User.class);
+        Query query = new Query(Criteria.where("id").is(id));
+        mongoTemplate.remove(query, User.class);
     }
 }

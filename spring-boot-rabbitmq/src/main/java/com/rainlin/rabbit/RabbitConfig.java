@@ -19,10 +19,10 @@ public class RabbitConfig {
 
     /**
      * 自定义RabbitTemplate
-     * 1.设置消息转换器为JSON
-     * 2.设置消息的回调函数，需在配置文件中开启相应配置后生效
-     * ConfirmCallback：消息成功发送至exchange后的回调函数
-     * ReturnCallback：消息未成功发送至queue后的回调函数
+     * <ul>
+     *     <li>设置消息转换器为JSON</li>
+     *     <li>设置消息的回调函数</li>
+     * </ul>
      */
     @Bean
     RabbitTemplate rabbitTemplate(ConnectionFactory connectionFactory) {
@@ -34,6 +34,11 @@ public class RabbitConfig {
         return rabbitTemplate;
     }
 
+    /**
+     * 必须要注册为bean，否则@RabbitListener不会使用该消息转换器
+     *
+     * @return Jackson2JsonMessageConverter
+     */
     @Bean
     public Jackson2JsonMessageConverter messageConverter() {
         return new Jackson2JsonMessageConverter();
@@ -54,6 +59,11 @@ public class RabbitConfig {
         return new Queue("object");
     }
 
+    /**
+     * 消息成功发送至exchange后的回调函数，同时需配置{@code spring.rabbitmq.publisher-confirms: true}
+     *
+     * @return RabbitTemplate.ConfirmCallback
+     */
     @Bean
     public RabbitTemplate.ConfirmCallback confirmCallback() {
         return (correlationData, ack, cause) -> {
@@ -65,6 +75,11 @@ public class RabbitConfig {
         };
     }
 
+    /**
+     * 消息未成功发送至queue后的回调函数，同时需配置{@code spring.rabbitmq.publisher-returns: true}
+     *
+     * @return RabbitTemplate.ReturnCallback
+     */
     @Bean
     public RabbitTemplate.ReturnCallback returnCallback() {
         return (message, replyCode, replyText, exchange, routingKey) -> {

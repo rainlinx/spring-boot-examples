@@ -4,13 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.5.9</version>
-		<relativePath/> <!-- lookup parent from repository -->
+		<groupId>com.rainlin</groupId>
+		<artifactId>spring-boot-examples</artifactId>
+		<version>2.0.0</version>
 	</parent>
 
-	<groupId>com.rainlin</groupId>
 	<artifactId>spring-boot-elasticsearch</artifactId>
 	<version>1.0</version>
 	<packaging>jar</packaging>

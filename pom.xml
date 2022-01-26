@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.1.18.RELEASE</version>
+        <version>2.5.9</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -28,8 +28,8 @@
         <module>spring-boot-banner</module>
         <module>spring-boot-commandLineRunner</module>
         <module>spring-boot-docker</module>
-<!--        <module>spring-boot-elasticsearch</module>-->
-        <module>spring-boot-fastDFS</module>
+        <module>spring-boot-elasticsearch</module>
+        <!--        <module>spring-boot-fastDFS</module>-->
         <module>spring-boot-file-upload</module>
         <module>spring-boot-hello</module>
         <module>spring-boot-helloWorld</module>

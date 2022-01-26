@@ -1,7 +1,7 @@
 package com.rainlin;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
  * Created by summer on 2017/5/8.

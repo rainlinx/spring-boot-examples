@@ -11,17 +11,18 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 public class WebSocketStompConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/spring-boot-websocket").setAllowedOrigins("*").withSockJS();
+        // springboot2.5后跨域的配置变更为setAllowedOriginPatterns
+        registry.addEndpoint("/spring-boot-websocket").setAllowedOriginPatterns("*").withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
         // 基于内存消息代理
         // 同时开启会导致重复消费消息
-        registry.enableSimpleBroker("/topic", "/queue", "/user");
+        //registry.enableSimpleBroker("/topic", "/queue", "/user");
 
         // 基于rabbitmq-stomp消息代理
-        //registry.enableStompBrokerRelay("/topic", "/queue", "/amq/queue", "/exchange");
+        registry.enableStompBrokerRelay("/topic", "/queue", "/amq/queue", "/exchange");
         registry.setApplicationDestinationPrefixes("/app");
     }
 }

@@ -29,7 +29,7 @@ Spring Boot 使用的各种示例，以最简单、最实用为标准，此开�
                     <artifactId>hamcrest-core</artifactId>
                 </exclusion>
             </exclusions>
-        </dependency>
+    </dependency>
     ```
 - `spring-boot-starter-web`默认不包含`hibernate-validator`依赖，需自主添加依赖
   ```xml
@@ -37,5 +37,5 @@ Spring Boot 使用的各种示例，以最简单、最实用为标准，此开�
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+  </dependency>
   ```

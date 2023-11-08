@@ -30,23 +30,23 @@ import org.springframework.core.convert.converter.Converter;
 @SpringBootApplication
 public class ThymeleafApplication {
 
-	@Bean
-	public MessageRepository messageRepository() {
-		return new InMemoryMessageRepository();
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(ThymeleafApplication.class, args);
+    }
 
-	@Bean
-	public Converter<String, Message> messageConverter() {
-		return new Converter<String, Message>() {
-			@Override
-			public Message convert(String id) {
-				return messageRepository().findMessage(Long.valueOf(id));
-			}
-		};
-	}
+    @Bean
+    public MessageRepository messageRepository() {
+        return new InMemoryMessageRepository();
+    }
 
-	public static void main(String[] args) {
-		SpringApplication.run(ThymeleafApplication.class, args);
-	}
+    @Bean
+    public Converter<String, Message> messageConverter() {
+        return new Converter<String, Message>() {
+            @Override
+            public Message convert(String id) {
+                return messageRepository().findMessage(Long.valueOf(id));
+            }
+        };
+    }
 
 }

@@ -79,7 +79,6 @@ public class BaseResult<T> {
     }
 
 
-
     public static class ResponseParam {
         private int code;
         private String msg;

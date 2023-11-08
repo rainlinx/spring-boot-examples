@@ -1,51 +1,52 @@
-<form id='myupload' action='http://localhost:8080/uploadSign' method='post' enctype='multipart/form-data'>
-  <div class="demo">
-    <div class="btn">
-      <span>Ìí¼Ó¸½¼þ</span>
-      <input id="fileupload" type="file" name="file1"></div>
-    <div class="progress">
-      <span class="bar"></span>
-      <span class="percent">0%</span></div>
-    <!-- ÏÔÊ¾ÒÑÉÏ´«µÄÎÄ¼þÃû -->
-    <div class="files"></div>
-    <!-- ÏÔÊ¾ÒÑÉÏ´«µÄÍ¼Æ¬-->
-    <div class="showimg"></div>
-  </div>
-  <input type="submit" onclick="gosubmit2()" /></form>
+<form action='http://localhost:8080/uploadSign' enctype='multipart/form-data' id='myupload' method='post'>
+    <div class="demo">
+        <div class="btn">
+            <span>ï¿½ï¿½Ó¸ï¿½ï¿½ï¿½</span>
+            <input id="fileupload" name="file1" type="file"></div>
+        <div class="progress">
+            <span class="bar"></span>
+            <span class="percent">0%</span></div>
+        <!-- ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ -->
+        <div class="files"></div>
+        <!-- ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Ï´ï¿½ï¿½ï¿½Í¼Æ¬-->
+        <div class="showimg"></div>
+    </div>
+    <input onclick="gosubmit2()" type="submit"/></form>
 <script src="https://cdn.bootcss.com/jquery/1.6.4/jquery.js"></script>
-<script type="text/javascript" src="https://cdn.bootcss.com/jquery.form/4.1.0/jquery.form.min.js"></script>
-<script type="text/javascript">var bar = $('.bar'); //½ø¶ÈÌõ
-  var percent = $('.percent'); //»ñÈ¡ÉÏ´«°Ù·Ö±È
-  var showimg = $('.showimg'); //ÏÔÊ¾Í¼Æ¬µÄdiv
-  var progress = $('.progress'); //ÏÔÊ¾½ø¶ÈµÄdiv
-  var files = $('.files'); //ÎÄ¼þÉÏ´«¿Ø¼þµÄinputÔªËØ
-  var btn = $('.btn span'); //°´Å¥ÎÄ±¾
-  function gosubmit2() {
+<script src="https://cdn.bootcss.com/jquery.form/4.1.0/jquery.form.min.js" type="text/javascript"></script>
+<script type="text/javascript">var bar = $('.bar'); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+var percent = $('.percent'); //ï¿½ï¿½È¡ï¿½Ï´ï¿½ï¿½Ù·Ö±ï¿½
+var showimg = $('.showimg'); //ï¿½ï¿½Ê¾Í¼Æ¬ï¿½ï¿½div
+var progress = $('.progress'); //ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½Èµï¿½div
+var files = $('.files'); //ï¿½Ä¼ï¿½ï¿½Ï´ï¿½ï¿½Ø¼ï¿½ï¿½ï¿½inputÔªï¿½ï¿½
+var btn = $('.btn span'); //ï¿½ï¿½Å¥ï¿½Ä±ï¿½
+function gosubmit2() {
     $("#myupload").ajaxSubmit({
-      dataType: 'json',
-      //·µ»ØÊý¾ÝÀàÐÍ
-      beforeSend: function() {
-        showimg.empty();
-        progress.show();
-        var percentVal = '0%';
-        bar.width(percentVal);
-        percent.html(percentVal);
-        btn.html('ÉÏ´«ÖÐ..');
-      },
-      //¸üÐÂ½ø¶ÈÌõÊÂ¼þ´¦Àí´úÂë
-      uploadProgress: function(event, position, total, percentComplete) {
-        var percentVal = percentComplete + '%';
-        bar.width(percentVal);
-        percent.html(percentVal);
-      },
-      success: function(data) { //Í¼Æ¬ÉÏ´«³É¹¦Ê±
-        //»ñÈ¡·þÎñÆ÷¶Ë·µ»ØµÄÎÄ¼þÊý¾Ý
-        alert(data.name + "," + data.pic + "," + data.size);
-      },
-      error: function(xhr) {
-        btn.html(ÉÏ´«Ê§°Ü);
-        bar.width('0');
-        files.html(xhr.responseText);
-      }
+        dataType: 'json',
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        beforeSend: function () {
+            showimg.empty();
+            progress.show();
+            var percentVal = '0%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+            btn.html('ï¿½Ï´ï¿½ï¿½ï¿½..');
+        },
+        //ï¿½ï¿½ï¿½Â½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        uploadProgress: function (event, position, total, percentComplete) {
+            var percentVal = percentComplete + '%';
+            bar.width(percentVal);
+            percent.html(percentVal);
+        },
+        success: function (data) { //Í¼Æ¬ï¿½Ï´ï¿½ï¿½É¹ï¿½Ê±
+            //ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ë·ï¿½ï¿½Øµï¿½ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½
+            alert(data.name + "," + data.pic + "," + data.size);
+        },
+        error: function (xhr) {
+            btn.html(ï¿½Ï´ï¿½Ê§ï¿½ï¿½)
+            ;
+            bar.width('0');
+            files.html(xhr.responseText);
+        }
     });
-  }</script>
+}</script>

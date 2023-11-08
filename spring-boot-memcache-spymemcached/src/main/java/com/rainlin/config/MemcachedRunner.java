@@ -12,19 +12,19 @@ import java.net.InetSocketAddress;
 
 @Component
 public class MemcachedRunner implements CommandLineRunner {
-    protected Logger logger =  LoggerFactory.getLogger(this.getClass());
+    protected Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Resource
-    private  MemcacheSource memcacheSource;
+    private MemcacheSource memcacheSource;
 
     private MemcachedClient client = null;
 
     @Override
     public void run(String... args) throws Exception {
         try {
-            client = new MemcachedClient(new InetSocketAddress(memcacheSource.getIp(),memcacheSource.getPort()));
+            client = new MemcachedClient(new InetSocketAddress(memcacheSource.getIp(), memcacheSource.getPort()));
         } catch (IOException e) {
-            logger.error("inint MemcachedClient failed ",e);
+            logger.error("inint MemcachedClient failed ", e);
         }
     }
 

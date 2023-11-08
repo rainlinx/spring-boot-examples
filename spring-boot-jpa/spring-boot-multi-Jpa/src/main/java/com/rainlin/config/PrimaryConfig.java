@@ -1,10 +1,5 @@
 package com.rainlin.config;
 
-import java.util.Map;
-
-import javax.persistence.EntityManager;
-import javax.sql.DataSource;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.orm.jpa.EntityManagerFactoryBuilder;
@@ -17,12 +12,16 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManager;
+import javax.sql.DataSource;
+import java.util.Map;
+
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-		entityManagerFactoryRef="entityManagerFactoryPrimary",
-		transactionManagerRef="transactionManagerPrimary",
-		basePackages= {"com.rainlin.repository.test1"})//设置dao（repo）所在位置
+        entityManagerFactoryRef = "entityManagerFactoryPrimary",
+        transactionManagerRef = "transactionManagerPrimary",
+        basePackages = {"com.rainlin.repository.test1"})//设置dao（repo）所在位置
 public class PrimaryConfig {
 
     @Autowired
@@ -35,7 +34,7 @@ public class PrimaryConfig {
 
     @Bean(name = "entityManagerFactoryPrimary")
     @Primary
-    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary (EntityManagerFactoryBuilder builder) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactoryPrimary(EntityManagerFactoryBuilder builder) {
         return builder
                 .dataSource(primaryDataSource)
                 .properties(vendorProperties)

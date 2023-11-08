@@ -1,4 +1,3 @@
-
 package com.rainlin.model;
 
 import lombok.Data;

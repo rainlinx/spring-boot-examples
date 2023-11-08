@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"></meta>
     <title>Example If/Unless </title>
 </head>
 <body>
-<div >
+<div>
     <h1>URL</h1>
-    <a  th:href="@{http://www.ityouknow.com/{type}(type=${type})}">link1</a>
+    <a th:href="@{http://www.ityouknow.com/{type}(type=${type})}">link1</a>
     <br/>
     <a th:href="@{http://www.ityouknow.com/{pageId}/can-use-springcloud.html(pageId=${pageId})}">view</a>
     <br/>

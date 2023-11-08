@@ -1,7 +1,7 @@
 package com.rainlin.controller;
 
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
@@ -21,7 +21,7 @@ public class HelloWorldControlerTests {
 
     private MockMvc mvc;
 
-    @Before
+    @BeforeAll
     public void setUp() throws Exception {
         mvc = MockMvcBuilders.standaloneSetup(new HelloWorldController()).build();
     }

@@ -37,8 +37,8 @@ public class UserRepositoryImpl implements UserRepository {
      */
     @Override
     public User findUserByUserName(String userName) {
-        Query query=new Query(Criteria.where("userName").is(userName));
-        User user =  mongoTemplate.findOne(query , User.class);
+        Query query = new Query(Criteria.where("userName").is(userName));
+        User user = mongoTemplate.findOne(query, User.class);
         return user;
     }
 

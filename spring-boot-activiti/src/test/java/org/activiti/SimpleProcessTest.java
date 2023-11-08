@@ -6,7 +6,7 @@
 //import org.activiti.engine.TaskService;
 //import org.activiti.engine.runtime.ProcessInstance;
 //import org.activiti.engine.task.Task;
-//import org.junit.Test;
+//import org.junit.jupiter.api.Test;
 //import org.junit.runner.RunWith;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.context.SpringBootTest;
@@ -15,7 +15,6 @@
 //import java.util.HashMap;
 //import java.util.Map;
 //
-//@RunWith(SpringRunner.class)
 //@SpringBootTest
 //public class SimpleProcessTest {
 //    @Autowired

@@ -3,11 +3,11 @@
 <head th:fragment="common_header(title,links)">
     <title th:replace="${title}">comm title</title>
 
-    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/myapp.css}">
+    <link media="all" rel="stylesheet" th:href="@{/css/myapp.css}" type="text/css">
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
-    <script type="text/javascript" th:src="@{/js/myapp.js}"></script>
+    <script th:src="@{/js/myapp.js}" type="text/javascript"></script>
 
-    <th:block th:replace="${links}" />
+    <th:block th:replace="${links}"/>
 </head>
 <body>
 

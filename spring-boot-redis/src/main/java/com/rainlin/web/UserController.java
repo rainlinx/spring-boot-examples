@@ -16,17 +16,17 @@ import java.util.UUID;
 public class UserController {
 
     @RequestMapping("/getUser")
-    @Cacheable(value="user-key")
+    @Cacheable(value = "user-key")
     public User getUser() {
-        User user=new User("aa@126.com", "aa", "aa123456", "aa","123", LocalDateTime.now(), new Date(), Timestamp.valueOf(LocalDateTime.now()));
+        User user = new User("aa@126.com", "aa", "aa123456", "aa", "123", LocalDateTime.now(), new Date(), Timestamp.valueOf(LocalDateTime.now()));
         System.out.println("从数据库中获取信息");
         return user;
     }
 
     @RequestMapping("/addUser")
-    @CachePut(value="user-key")
+    @CachePut(value = "user-key")
     public User addUser() {
-        User user=new User("aa@126.com", "aa" + Math.random(), "aa123456", "aa","123", LocalDateTime.now(), new Date(), Timestamp.valueOf(LocalDateTime.now()));
+        User user = new User("aa@126.com", "aa" + Math.random(), "aa123456", "aa", "123", LocalDateTime.now(), new Date(), Timestamp.valueOf(LocalDateTime.now()));
         System.out.println("新增用户");
         return user;
     }

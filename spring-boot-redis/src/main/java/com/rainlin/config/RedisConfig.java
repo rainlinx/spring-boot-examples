@@ -59,7 +59,6 @@ public class RedisConfig extends CachingConfigurerSupport {
 
     /**
      * 重写CacheManager，通过配置spring.cache.redis.ttl支持自定义每个cacheName的过期时间
-     *
      */
     @Override
     @Bean

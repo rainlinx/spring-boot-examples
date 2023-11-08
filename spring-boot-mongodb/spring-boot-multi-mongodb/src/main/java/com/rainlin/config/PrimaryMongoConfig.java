@@ -9,6 +9,6 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @Configuration
 @EnableConfigurationProperties(MultipleMongoProperties.class)
 @EnableMongoRepositories(basePackages = "com.rainlin.repository.primary",
-		mongoTemplateRef = "primaryMongoTemplate")
+        mongoTemplateRef = "primaryMongoTemplate")
 public class PrimaryMongoConfig {
 }

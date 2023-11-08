@@ -10,31 +10,31 @@
 <h1>修改用户</h1>
 <br/><br/>
 <div class="with:80%">
-    <form class="form-horizontal"   th:action="@{/edit}" th:object="${user}"  method="post">
-        <input type="hidden" name="id" th:value="*{id}" />
+    <form class="form-horizontal" method="post" th:action="@{/edit}" th:object="${user}">
+        <input name="id" th:value="*{id}" type="hidden"/>
         <div class="form-group">
-            <label for="userName" class="col-sm-2 control-label">userName</label>
+            <label class="col-sm-2 control-label" for="userName">userName</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="userName"  id="userName" th:value="*{userName}" placeholder="userName"/>
+                <input class="form-control" id="userName" name="userName" placeholder="userName" th:value="*{userName}" type="text"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="password" class="col-sm-2 control-label" >Password</label>
+            <label class="col-sm-2 control-label" for="password">Password</label>
             <div class="col-sm-10">
-                <input type="password" class="form-control" name="password" id="password"  th:value="*{password}" placeholder="Password"/>
+                <input class="form-control" id="password" name="password" placeholder="Password" th:value="*{password}" type="password"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="age" class="col-sm-2 control-label">age</label>
+            <label class="col-sm-2 control-label" for="age">age</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="age"  id="age" th:value="*{age}" placeholder="age"/>
+                <input class="form-control" id="age" name="age" placeholder="age" th:value="*{age}" type="text"/>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <input type="submit" value="Submit" class="btn btn-info" />
+                <input class="btn btn-info" type="submit" value="Submit"/>
                 &nbsp; &nbsp; &nbsp;
-                <a href="/toAdd" th:href="@{/list}" class="btn btn-info">Back</a>
+                <a class="btn btn-info" href="/toAdd" th:href="@{/list}">Back</a>
             </div>
 
         </div>

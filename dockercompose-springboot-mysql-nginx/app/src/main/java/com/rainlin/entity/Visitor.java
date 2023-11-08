@@ -11,9 +11,9 @@ public class Visitor {
     @GeneratedValue
     private long id;
     @Column(nullable = false)
-    private  long  times;
+    private long times;
     @Column(nullable = false)
-    private  String  ip;
+    private String ip;
 
     public long getId() {
         return id;

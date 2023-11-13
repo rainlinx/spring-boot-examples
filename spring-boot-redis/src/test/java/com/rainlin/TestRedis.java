@@ -1,7 +1,7 @@
 package com.rainlin;
 
 import com.rainlin.model.User;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +26,7 @@ public class TestRedis {
     @Test
     public void test() throws Exception {
         stringRedisTemplate.opsForValue().set("aaa", "111");
-        Assert.assertEquals("111", stringRedisTemplate.opsForValue().get("aaa"));
+        Assertions.assertEquals("111", stringRedisTemplate.opsForValue().get("aaa"));
     }
 
     @Test
@@ -43,6 +43,6 @@ public class TestRedis {
         } else {
             System.out.println("exists is false");
         }
-        // Assert.assertEquals("aa", operations.get("com.rainlin.f").getUserName());
+        // Assertions.assertEquals("aa", operations.get("com.rainlin.f").getUserName());
     }
 }

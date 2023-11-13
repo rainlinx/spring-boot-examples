@@ -2,7 +2,7 @@ package com.rainlin.mapper;
 
 import com.rainlin.enums.UserSexEnum;
 import com.rainlin.model.User;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ public class UserMapperTest {
         userMapper.insert(new User("bb", "b123456", UserSexEnum.WOMAN));
         userMapper.insert(new User("cc", "b123456", UserSexEnum.WOMAN));
 
-        Assert.assertEquals(3, userMapper.getAll().size());
+        Assertions.assertEquals(3, userMapper.getAll().size());
     }
 
     @Test
@@ -41,7 +41,7 @@ public class UserMapperTest {
         System.out.println(user.toString());
         user.setNickName("neo");
         userMapper.update(user);
-        Assert.assertTrue(("neo".equals(userMapper.getOne(6l).getNickName())));
+        Assertions.assertTrue(("neo".equals(userMapper.getOne(6l).getNickName())));
     }
 
 }

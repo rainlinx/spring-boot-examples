@@ -65,7 +65,7 @@
 //                .processInstanceId(processInstance.getId())
 //                .taskCandidateGroup("dev-managers")
 //                .singleResult();
-//        Assert.assertEquals("Telephone interview", task.getName());
+//        Assertions.assertEquals("Telephone interview", task.getName());
 //
 //        // Completing the phone interview with success should trigger two new tasks
 //        Map<String, Object> taskVariables = new HashMap<String, Object>();
@@ -76,9 +76,9 @@
 //                .processInstanceId(processInstance.getId())
 //                .orderByTaskName().asc()
 //                .list();
-//        Assert.assertEquals(2, tasks.size());
-//        Assert.assertEquals("Financial negotiation", tasks.get(0).getName());
-//        Assert.assertEquals("Tech interview", tasks.get(1).getName());
+//        Assertions.assertEquals(2, tasks.size());
+//        Assertions.assertEquals("Financial negotiation", tasks.get(0).getName());
+//        Assertions.assertEquals("Tech interview", tasks.get(1).getName());
 //
 //        // Completing both should wrap up the subprocess, send out the 'welcome mail' and end the process instance
 //        taskVariables = new HashMap<String, Object>();
@@ -90,10 +90,10 @@
 //        taskService.complete(tasks.get(1).getId(), taskVariables);
 //
 //        // Verify email
-//        Assert.assertEquals(1, wiser.getMessages().size());
+//        Assertions.assertEquals(1, wiser.getMessages().size());
 //
 //        // Verify process completed
-//        Assert.assertEquals(1, historyService.createHistoricProcessInstanceQuery().finished().count());
+//        Assertions.assertEquals(1, historyService.createHistoricProcessInstanceQuery().finished().count());
 //
 //    }
 //

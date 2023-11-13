@@ -379,7 +379,6 @@ One of the strengths of using Activiti for creating business processes is that e
 Here�s how the unit test for the �happy path� looks like (while omitting `@Autowired` fields and test e-mail server setup). The code also shows the use of the Activiti API�s for querying tasks for a given group and process instance.
 
 ```java
-@RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = {MyApp.class})
 @WebAppConfiguration
 @IntegrationTest
@@ -402,7 +401,7 @@ public class HireProcessTest {
                 .processInstanceId(processInstance.getId())
                 .taskCandidateGroup("dev-managers")
                 .singleResult();
-        Assert.assertEquals("Telephone interview", task.getName());
+        Assertions.assertEquals("Telephone interview", task.getName());
 
         // Completing the phone interview with success should trigger two new tasks
         Map<String, Object> taskVariables = new HashMap<String, Object>();
@@ -413,9 +412,9 @@ public class HireProcessTest {
                 .processInstanceId(processInstance.getId())
                 .orderByTaskName().asc()
                 .list();
-        Assert.assertEquals(2, tasks.size());
-        Assert.assertEquals("Financial negotiation", tasks.get(0).getName());
-        Assert.assertEquals("Tech interview", tasks.get(1).getName());
+        Assertions.assertEquals(2, tasks.size());
+        Assertions.assertEquals("Financial negotiation", tasks.get(0).getName());
+        Assertions.assertEquals("Tech interview", tasks.get(1).getName());
 
         // Completing both should wrap up the subprocess, send out the 'welcome mail' and end the process instance
         taskVariables = new HashMap<String, Object>();
@@ -427,10 +426,10 @@ public class HireProcessTest {
         taskService.complete(tasks.get(1).getId(), taskVariables);
 
         // Verify email
-        Assert.assertEquals(1, wiser.getMessages().size());
+        Assertions.assertEquals(1, wiser.getMessages().size());
 
         // Verify process completed
-        Assert.assertEquals(1, historyService.createHistoricProcessInstanceQuery().finished().count());
+        Assertions.assertEquals(1, historyService.createHistoricProcessInstanceQuery().finished().count());
 
     }
 }

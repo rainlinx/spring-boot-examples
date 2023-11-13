@@ -7,7 +7,7 @@ import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.rainlin.mapper.UserMapper;
 import com.rainlin.model.User;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -63,7 +63,7 @@ public class MyBatisPlusTest {
     @Test
     public void testSelect() {
         List<User> userList = userMapper.selectList(null);
-        Assert.assertEquals(5, userList.size());
+        Assertions.assertEquals(5, userList.size());
         userList.forEach(System.out::println);
     }
 

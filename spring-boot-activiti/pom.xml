@@ -9,7 +9,6 @@
         <version>2.0.0</version>
     </parent>
 
-    <groupId>com.rainlin</groupId>
     <artifactId>spring-boot-activiti</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>spring-boot-activiti</name>

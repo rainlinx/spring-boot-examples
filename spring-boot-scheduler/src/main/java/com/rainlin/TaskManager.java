@@ -1,14 +1,18 @@
 package com.rainlin;
 
 import com.rainlin.model.TaskVO;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.ScheduledAnnotationBeanPostProcessor;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
 import org.springframework.scheduling.config.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -18,11 +22,17 @@ import java.util.stream.Collectors;
  * @date 2023-11-13
  */
 @Configuration
-public class TaskManager implements SchedulingConfigurer {
+public class TaskManager implements SchedulingConfigurer, CommandLineRunner {
     private final ConcurrentHashMap<String, CronTask> cronTaskConcurrentHashMap = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, FixedDelayTask> fixedDelayTaskConcurrentHashMap = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, FixedRateTask> fixedRateTaskConcurrentHashMap = new ConcurrentHashMap<>();
     private final ConcurrentHashMap<String, Task> taskConcurrentHashMap = new ConcurrentHashMap<>();
+    private final ConcurrentHashMap<String, ScheduledTask> scheduledTaskConcurrentHashMap = new ConcurrentHashMap<>();
+    private final ScheduledAnnotationBeanPostProcessor scheduledAnnotationBeanPostProcessor;
+
+    public TaskManager(ScheduledAnnotationBeanPostProcessor scheduledAnnotationBeanPostProcessor) {
+        this.scheduledAnnotationBeanPostProcessor = scheduledAnnotationBeanPostProcessor;
+    }
 
     /**
      * 获取定时任务列表
@@ -57,6 +67,24 @@ public class TaskManager implements SchedulingConfigurer {
                 .getRunnable().run();
     }
 
+    /**
+     * 停止定时任务
+     *
+     * @param taskName 任务名
+     */
+    public void stop(String taskName) {
+        scheduledTaskConcurrentHashMap.get(taskName).cancel();
+    }
+
+    /**
+     * 启动定时任务
+     *
+     * @param taskName 任务名
+     */
+    public void start(String taskName) {
+        // TODO
+    }
+
     @Override
     public void configureTasks(ScheduledTaskRegistrar taskRegistrar) {
         taskRegistrar.getCronTaskList()
@@ -68,5 +96,12 @@ public class TaskManager implements SchedulingConfigurer {
         taskConcurrentHashMap.putAll(cronTaskConcurrentHashMap);
         taskConcurrentHashMap.putAll(fixedDelayTaskConcurrentHashMap);
         taskConcurrentHashMap.putAll(fixedRateTaskConcurrentHashMap);
+    }
+
+    @Override
+    public void run(String... args) {
+        Map<String, ScheduledTask> scheduledTaskMap = scheduledAnnotationBeanPostProcessor.getScheduledTasks().stream()
+                .collect(Collectors.toMap(ScheduledTask::toString, Function.identity()));
+        this.scheduledTaskConcurrentHashMap.putAll(scheduledTaskMap);
     }
 }

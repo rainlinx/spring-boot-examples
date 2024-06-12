@@ -43,4 +43,14 @@ public class TaskController {
     public void runTask(@RequestParam String taskName) {
         taskManager.run(taskName);
     }
+
+    /**
+     * 取消定时任务
+     *
+     * @param taskName 任务名
+     */
+    @PostMapping("/stop")
+    public void stopTask(@RequestParam String taskName) {
+        taskManager.stop(taskName);
+    }
 }
